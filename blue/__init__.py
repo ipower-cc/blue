@@ -9,7 +9,7 @@ import sys
 
 from importlib import machinery
 
-__version__ = '0.9.1'
+__version__ = '0.9.2'
 
 
 # Black 1.0+ ships pre-compiled libraries with mypyc, which we can't
@@ -70,7 +70,7 @@ import black.strings
 from black import Leaf, Path, click, token
 from black.cache import user_cache_dir
 from black.comments import ProtoComment, make_comment
-from black.files import tomli
+from black.files import tomllib
 from black.linegen import LineGenerator as BlackLineGenerator
 from black.lines import Line
 from black.nodes import (
@@ -325,7 +325,7 @@ def parse_pyproject_toml(path_config: str) -> Dict[str, Any]:
     If parsing fails, will raise a tomli.TOMLDecodeError
     """
     with open(path_config, "rb") as f:
-        pyproject_toml = tomli.load(f)
+        pyproject_toml = tomllib.load(f)
     config = pyproject_toml.get("tool", {}).get("blue", {})
     return {k.replace("--", "").replace("-", "_"): v for k, v in config.items()}
 
