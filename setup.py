@@ -37,7 +37,7 @@ setup(
     packages=['blue'],
     tests_require=['tox'],
     cmdclass={'test': Tox},
-    install_requires=['black~=23.7.0', 'flake8>=3.8'],
+    install_requires=['black~=25.9.0', 'flake8>=3.8', 'click<8.2'],
     project_urls={
         'Documentation': 'https://blue.readthedocs.io/en/latest',
         'Source': 'https://github.com/grantjenks/blue.git',
@@ -50,12 +50,12 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
     entry_points={
