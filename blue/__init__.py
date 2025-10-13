@@ -9,7 +9,7 @@ import sys
 
 from importlib import machinery
 
-__version__ = '0.9.2'
+__version__ = '0.9.3'
 
 
 # Black 1.0+ ships pre-compiled libraries with mypyc, which we can't
@@ -85,6 +85,10 @@ from black.strings import (
     normalize_string_prefix,
     sub_twice,
 )
+try:
+    from black.strings import fix_docstring as black_strings_fix_docstring
+except ImportError: # black 25.1
+    from black.strings import fix_multiline_docstring as black_strings_fix_docstring
 
 from flake8.options import config as flake8_config
 from flake8.options import manager as flake8_manager
@@ -99,7 +103,6 @@ from click.decorators import version_option
 LOG = logging.getLogger(__name__)
 
 black_format_file_in_place = black.format_file_in_place
-black_strings_fix_docstring = black.strings.fix_docstring
 black_strings_normalize_string_quotes = black.strings.normalize_string_quotes
 
 # Try not to poison Black's cache directory.
