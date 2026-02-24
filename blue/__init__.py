@@ -89,10 +89,13 @@ from black.strings import (
     normalize_string_prefix,
     sub_twice,
 )
+
 try:
     from black.strings import fix_docstring as black_strings_fix_docstring
-except ImportError: # black 25.1
-    from black.strings import fix_multiline_docstring as black_strings_fix_docstring
+except ImportError:   # black 25.1
+    from black.strings import (
+        fix_multiline_docstring as black_strings_fix_docstring,
+    )
 
 
 from enum import Enum
@@ -406,6 +409,7 @@ def configs_in_path(path: Path):
 
     config_file_found = False
 
+
 def load_configs_from_file() -> Dict[str, Any]:
     """Parses supported config files using configparser."""
     current_path = Path('.').resolve()
@@ -448,10 +452,12 @@ def read_configs(
     ctx.default_map = default_map
     return result
 
+
 def _find_clickopt(name: str) -> click.core.Option:
     for index, opt in enumerate(black.main.params):
         if opt.name == name:
             return opt
+
 
 def main():
     monkey_patch_black(Mode.synchronous)
