@@ -408,6 +408,7 @@ def configs_in_path(path: Path):
     return [path.joinpath(c) for c in SUPPORTED_CONFIG_FILES]
 
     config_file_found = False
+    return config_file_found
 
 
 def load_configs_from_file() -> Dict[str, Any]:

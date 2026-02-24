@@ -3,7 +3,7 @@
 
 # virutalenv directories
 /env*/
-.venv
+/.venv*/
 
 # test files/directories
 /.cache/
