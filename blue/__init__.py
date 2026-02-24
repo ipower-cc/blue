@@ -316,8 +316,11 @@ def list_comments(prefix: str, *, is_endmarker: bool) -> List[ProtoComment]:
             comment = make_comment(line)
         result.append(
             ProtoComment(
-                type=comment_type, value=comment, newlines=nlines,
+                type=comment_type, 
+                value=comment, 
+                newlines=nlines,
                 consumed=consumed,
+                form_feed=False
             )
         )
         nlines = 0
@@ -445,24 +448,29 @@ def read_configs(
     ctx.default_map = default_map
     return result
 
+def _find_clickopt(name: str) -> click.core.Option:
+    for index, opt in enumerate(black.main.params):
+        if opt.name == name:
+            return opt
 
 def main():
     monkey_patch_black(Mode.synchronous)
     # Reach in and monkey patch the Click options. This is tricky based on the
     # way Click works! This is highly fragile because the index into the Click
     # parameters is dependent on the decorator order for Black's main().
+
     # Change the default line length to 79 characters.
-    line_length_param = black.main.params[1]
+    line_length_param = _find_clickopt('line_length')
     assert line_length_param.name == 'line_length'
     line_length_param.default = 79
     # Change the target version help doc to mention "Blue", not "Black".
-    target_version_param = black.main.params[2]
+    target_version_param = _find_clickopt('target_version')
     assert target_version_param.name == 'target_version'
     target_version_param.help = target_version_param.help.replace(
         'Black', 'Blue'
     )
     # Change the config param callback to support setup.cfg, tox.ini, etc.
-    config_param = black.main.params[28]
+    config_param = _find_clickopt('config')
     assert config_param.name == 'config'
     config_param.callback = read_configs
     # Change the version string by adding a redundant Click `version_option`
