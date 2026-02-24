@@ -2,12 +2,14 @@
 name = "blue"
 version = "0.9.3"
 dependencies = [
-    "black~=25.9.0",
+    "setuptools",
+    "black~=25.11.0",
     "click<8.2",
     "doc8",
     "twine",
     "wheel",
 ]
+dynamic = ["readme", "description"]
 
 [dependency-groups]
 dev = [
@@ -21,3 +23,6 @@ dev = [
 
 [tool.uv]
 package = false
+
+[tool.ruff]
+target-version = 'py312'
