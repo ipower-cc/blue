@@ -1,0 +1,23 @@
+[project]
+name = "blue"
+version = "0.9.3"
+dependencies = [
+    "black~=25.9.0",
+    "click<8.2",
+    "doc8",
+    "twine",
+    "wheel",
+]
+
+[dependency-groups]
+dev = [
+    "flake8>=3.8",
+    "pytest",
+    "pytest-cov",
+    "rstcheck",
+    "sphinx",
+    "tox",
+]
+
+[tool.uv]
+package = false
