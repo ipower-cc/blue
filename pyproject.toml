@@ -1,28 +1,39 @@
 [project]
-name = "blue"
-version = "0.9.3"
+name = 'blue'
+version = '0.9.4'
 dependencies = [
-    "setuptools",
-    "black~=25.9.0",
-    "click<8.2",
-    "doc8",
-    "twine",
-    "wheel",
+    'setuptools',
+    'black~=25.9.0',
+    'click<8.2',
+    'doc8',
+    'twine',
+    'wheel',
 ]
-dynamic = ["readme", "description"]
+dynamic = ['readme', 'description']
 
 [dependency-groups]
 dev = [
-    "flake8>=3.8",
-    "pytest",
-    "pytest-cov",
-    "rstcheck",
-    "sphinx",
-    "tox",
+    'flake8>=3.8',
+    'pytest',
+    'pytest-cov',
+    'rstcheck',
+    'sphinx',
+    'tox',
 ]
 
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[tool.blue]
+line-length = 79
+target-version = ['py312']
+
 [tool.uv]
-package = false
+package = true
 
 [tool.ruff]
 target-version = 'py312'
+
+[project.scripts]
+blue = 'blue:main'

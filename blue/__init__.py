@@ -11,7 +11,7 @@ import sys
 
 from importlib import machinery
 
-__version__ = '0.9.3'
+__version__ = '0.9.4'
 
 # parses setup.cfg, tox.ini, and .blue config files
 SUPPORTED_CONFIG_FILES = ('setup.cfg', 'tox.ini', '.blue')
@@ -317,7 +317,7 @@ def list_comments(prefix: str, *, is_endmarker: bool) -> List[ProtoComment]:
         result.append(
             ProtoComment(
                 type=comment_type, value=comment, newlines=nlines,
-                consumed=consumed
+                consumed=consumed,
             )
         )
         nlines = 0
