@@ -1,7 +1,7 @@
 [project]
 name = 'blue'
 version = '0.9.4'
-requires-python = ">=3.12"
+requires-python = ">=3.8,<3.13"
 dependencies = [
     'setuptools',
     'black~=23.12.0',

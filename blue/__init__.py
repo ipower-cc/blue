@@ -319,8 +319,8 @@ def list_comments(prefix: str, *, is_endmarker: bool) -> List[ProtoComment]:
             comment = make_comment(line)
         result.append(
             ProtoComment(
-                type=comment_type, 
-                value=comment, 
+                type=comment_type,
+                value=comment,
                 newlines=nlines,
                 consumed=consumed,
                 form_feed=False
