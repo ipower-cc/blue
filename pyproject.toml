@@ -3,7 +3,7 @@ name = "blue"
 version = "0.9.3"
 dependencies = [
     "setuptools",
-    "black~=25.11.0",
+    "black~=25.9.0",
     "click<8.2",
     "doc8",
     "twine",
