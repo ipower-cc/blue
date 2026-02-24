@@ -1,0 +1,21 @@
+[project]
+name = "blue"
+version = "0.0.1"
+dependencies = [
+    "doc8",
+    "twine",
+    "wheel",
+]
+
+[dependency-groups]
+dev = [
+    "flake8<5.0.0",
+    "pytest",
+    "pytest-cov",
+    "rstcheck",
+    "sphinx",
+    "tox",
+]
+
+[tool.uv]
+package = false
