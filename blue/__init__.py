@@ -284,11 +284,14 @@ def list_comments(prefix: str, *, is_endmarker: bool) -> List[ProtoComment]:
     consumed = 0
     nlines = 0
     ignored_lines = 0
+    form_feed = False
     for index, orig_line in enumerate(prefix.split("\n")):
         consumed += len(orig_line) + 1  # adding the length of the split '\n'
         line = orig_line.lstrip()
         if not line:
             nlines += 1
+            if "\f" in orig_line:
+                form_feed = True
         if not line.startswith("#"):
             # Escaped newlines outside of a comment are not really newlines at
             # all. We treat a single-line comment following an escaped newline
@@ -323,9 +326,10 @@ def list_comments(prefix: str, *, is_endmarker: bool) -> List[ProtoComment]:
                 value=comment,
                 newlines=nlines,
                 consumed=consumed,
-                form_feed=False
+                form_feed=form_feed,
             )
         )
+        form_feed = False
         nlines = 0
     return result
 
